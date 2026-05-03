@@ -1,4 +1,5 @@
-INSERT OR IGNORE INTO Letter (id, title, body, signoff, updatedAt)
+-- Seed the initial love letter (no-op if already exists)
+INSERT INTO "Letter" ("id", "title", "body", "signoff", "updatedAt")
 VALUES (
   1,
   'My Dearest Love',
@@ -14,5 +15,6 @@ Thank you for choosing me. Thank you for every quiet moment, every smile, every 
 
 This letter could never say it all, but I hope it says at least this: I love you, completely and without reservation, today and all the days after.',
   'Yours, always',
-  datetime('now')
-);
+  NOW()
+)
+ON CONFLICT ("id") DO NOTHING;
